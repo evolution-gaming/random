@@ -5,7 +5,7 @@ import org.scalatest.{FunSuite, Matchers}
 
 class RandomSpec extends FunSuite with Matchers {
 
-  private val random = Random.State(123456789l).mapK(FunctionK.id)
+  private implicit val random = Random.State(123456789l).mapK(FunctionK.id)
 
   test("int") {
     random.int shouldEqual random.int
@@ -37,5 +37,9 @@ class RandomSpec extends FunSuite with Matchers {
     a0 shouldEqual 4.3844963359962463E-7
     val (_, a1) = random1.double
     a1 shouldEqual 0.2843758208196805
+  }
+
+  test("apply") {
+    Random[Random.State.Type].int shouldEqual Random[Random.State.Type].int
   }
 }

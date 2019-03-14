@@ -14,7 +14,7 @@ organizationHomepage := Some(url("http://evolutiongaming.com"))
 
 bintrayOrganization := Some("evolutiongaming")
 
-scalaVersion := crossScalaVersions.value.last
+scalaVersion := crossScalaVersions.value.head
 
 crossScalaVersions := Seq("2.12.8")
 

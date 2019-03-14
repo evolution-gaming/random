@@ -21,6 +21,9 @@ object Random {
   type Seed = Long
 
 
+  def apply[F[_]](implicit F: Random[F]): Random[F] = F
+
+
   implicit class RandomOps[F[_]](val self: Random[F]) extends AnyVal {
 
     def mapK[G[_]](f: F ~> G): Random[G] = new Random[G] {
