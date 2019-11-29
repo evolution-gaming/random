@@ -1,9 +1,10 @@
 package com.evolutiongaming.random
 
 import cats.arrow.FunctionK
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 
-class RandomSpec extends FunSuite with Matchers {
+class RandomSpec extends AnyFunSuite with Matchers {
 
   private implicit val random = Random.State(123456789L).mapK(FunctionK.id)
 
