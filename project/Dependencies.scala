@@ -2,8 +2,8 @@ import sbt._
 
 object Dependencies {
 
-  val scalatest     = "org.scalatest"       %% "scalatest"   % "3.1.1"
   val `cats-helper` = "com.evolutiongaming" %% "cats-helper" % "2.0.1"
+  val munit = "org.scalameta" %% "munit" % "0.7.5"
 
   object Cats {
     private val version = "2.1.1"

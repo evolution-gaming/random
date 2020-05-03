@@ -16,6 +16,15 @@ project/plugins/project/
 .scala_dependencies
 .worksheet
 
+# Metals
+.bloop
+.metals
+metals.sbt
+
+# Dotty IDE
+.dotty-ide.json
+.dotty-ide-artifact
+
 # Idea
 .idea/
 *.iml
