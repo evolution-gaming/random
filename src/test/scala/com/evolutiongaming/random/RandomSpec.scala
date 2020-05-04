@@ -6,7 +6,7 @@ import org.scalatest.matchers.should.Matchers
 
 class RandomSpec extends AnyFunSuite with Matchers {
 
-  private implicit val random = Random.State(123456789L).mapK(FunctionK.id)
+  private val random = Random.State(123456789L) mapK FunctionK.id
 
   test("int") {
     random.int shouldEqual random.int
@@ -40,7 +40,4 @@ class RandomSpec extends AnyFunSuite with Matchers {
     a1 shouldEqual 0.2843758208196805
   }
 
-  test("apply") {
-    Random[Random.State.Type].int shouldEqual Random[Random.State.Type].int
-  }
 }
