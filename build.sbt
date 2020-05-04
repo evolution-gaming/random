@@ -16,7 +16,7 @@ bintrayOrganization := Some("evolutiongaming")
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.12.10", "2.13.1", "0.24.0-RC1")
+crossScalaVersions := Seq("0.24.0-RC1", "2.12.10", "2.13.1")
 
 Compile / unmanagedSourceDirectories += {
   if (scalaVersion.value startsWith "2")

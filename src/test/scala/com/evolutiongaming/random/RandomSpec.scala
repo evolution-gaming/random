@@ -9,7 +9,7 @@ class RandomSpec extends FunSuite {
     Random.State(123456789L).mapK(FunctionK.id)
 
   test("int") {
-    assert(random.int == random.int)
+    assertEquals(random.int, random.int)
     val (random1, a0) = random.int
     assertEquals(a0, 1883)
     val (_, a1) = random1.int
