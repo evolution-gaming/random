@@ -16,7 +16,7 @@ bintrayOrganization := Some("evolutiongaming")
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.12.10", "2.13.1", "0.24.0-RC1")
+crossScalaVersions := Seq("2.12.10", "2.13.1", "0.22.0-RC1")
 
 Compile / unmanagedSourceDirectories += {
   if (scalaVersion.value startsWith "2")
@@ -40,10 +40,8 @@ libraryDependencies ++= Seq(
   Cats.macros.withDottyCompat(scalaVersion.value),
   Cats.effect.withDottyCompat(scalaVersion.value),
   `cats-helper`.withDottyCompat(scalaVersion.value),
-  munit
+  scalatest % Test
 )
-
-testFrameworks += new TestFramework("munit.Framework")
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
 
