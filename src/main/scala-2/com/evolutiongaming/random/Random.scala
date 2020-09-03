@@ -1,7 +1,7 @@
 package com.evolutiongaming.random
 
 import cats.effect.Clock
-import cats.implicits._
+import cats.syntax.all._
 import cats.{FlatMap, Id, ~>}
 import com.evolutiongaming.catshelper.ClockHelper._
 
