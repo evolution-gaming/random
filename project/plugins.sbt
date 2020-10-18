@@ -10,4 +10,4 @@ addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.13")
 
 addSbtPlugin("com.evolutiongaming" % "sbt-scalac-opts-plugin" % "0.0.5")
 
-addSbtPlugin("ch.epfl.lamp" % "sbt-dotty" % "0.4.1")
+addSbtPlugin("ch.epfl.lamp" % "sbt-dotty" % "0.4.4")
