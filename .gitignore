@@ -20,6 +20,7 @@ project/plugins/project/
 # Metals
 .bloop
 .metals
+.vscode
 metals.sbt
 
 # Dotty IDE

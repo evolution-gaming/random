@@ -17,19 +17,14 @@ object Random {
 
   type Seed = Long
 
-  // TODO: the pair of `RandomOps` + `given ops: RandomOps` could be replaced
-  // by simple `extenstion` block in latest Dotty versions, we only use this
-  // because we use Dotty 0.22 as it is the latest version that ScalaTest is
-  // available for, and we wanted to try out ScalaTest in Dotty
-  trait RandomOps {
-    def [F[_], G[_]](self: Random[F]) mapK (f: F ~> G): Random[G] = new Random[G] {
+  extension [F[_], G[_]](self: Random[F]) {
+    def mapK(f: F ~> G): Random[G] = new Random[G] {
       def int = f(self.int)
       def long = f(self.long)
       def float = f(self.float)
       def double = f(self.double)
     }
   }
-  given ops: RandomOps
 
   type SeedT[A] = cats.data.StateT[Id, Seed, A]
 

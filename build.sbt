@@ -16,7 +16,7 @@ bintrayOrganization := Some("evolutiongaming")
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.3", "2.12.12", "0.22.0-RC1")
+crossScalaVersions := Seq("2.13.3", "2.12.12", "3.0.0-RC2")
 
 Compile / unmanagedSourceDirectories += {
   if (scalaVersion.value startsWith "2")
@@ -35,9 +35,9 @@ Test / unmanagedSourceDirectories += {
 resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
 
 libraryDependencies ++= Seq(
-  Cats.core.withDottyCompat(scalaVersion.value),
-  Cats.effect.withDottyCompat(scalaVersion.value),
-  `cats-helper`.withDottyCompat(scalaVersion.value),
+  Cats.core.cross(CrossVersion.for3Use2_13),
+  Cats.effect.cross(CrossVersion.for3Use2_13),
+  `cats-helper`.cross(CrossVersion.for3Use2_13),
   scalatest % Test
 )
 
