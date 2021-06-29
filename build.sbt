@@ -32,7 +32,7 @@ Test / unmanagedSourceDirectories += {
     sourceDirectory.value / "test" / "scala-3"
 }
 
-resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
+resolvers += Resolver.evolutionReleases
 
 libraryDependencies ++= Seq(
   Cats.core.withDottyCompat(scalaVersion.value),
