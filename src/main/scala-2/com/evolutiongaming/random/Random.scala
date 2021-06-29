@@ -116,11 +116,11 @@ object Random {
 
     type Type[A] = (State, A)
 
-    def fromClock[F[_] : Clock : FlatMap](random: Random[SeedT] = SeedT.Random): F[State] = {
+    def fromClock[F[_]: Clock: FlatMap](random: Random[SeedT] = SeedT.Random): F[State] = {
       for {
         nanos <- Clock[F].nanos
       } yield {
-        apply(nanos, random)
+        apply(nanos ^ 3447679086515839964L, random)
       }
     }
   }
