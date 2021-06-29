@@ -17,7 +17,7 @@ object RandomStateOf {
       .map { seedOf =>
         new Main with RandomStateOf[F] {
           def apply() = {
-            seedOf().map { seed => Random.State(seed) }
+            seedOf().map { seed => Random.State((seed ^ 0x5DEECE66DL) & ((1L << 48) - 1)) }
           }
         }
       }

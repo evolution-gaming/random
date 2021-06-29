@@ -120,7 +120,8 @@ object Random {
       for {
         nanos <- Clock[F].nanos
       } yield {
-        apply(nanos ^ 3447679086515839964L, random)
+        val seed = (nanos ^ 3447679086515839964L ^ 0x5DEECE66DL) & ((1L << 48) - 1)
+        apply(seed, random)
       }
     }
   }
