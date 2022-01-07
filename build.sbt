@@ -8,9 +8,9 @@ homepage := Some(new URL("http://github.com/evolution-gaming/random"))
 
 startYear := Some(2019)
 
-organizationName := "Evolution Gaming"
+organizationName := "Evolution"
 
-organizationHomepage := Some(url("http://evolutiongaming.com"))
+organizationHomepage := Some(url("http://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
