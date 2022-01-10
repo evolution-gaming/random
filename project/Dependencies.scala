@@ -2,7 +2,7 @@ import sbt._
 
 object Dependencies {
 
-  val `cats-helper` = "com.evolutiongaming" %% "cats-helper" % "2.7.1-SNAPSHOT"
+  val `cats-helper` = "com.evolutiongaming" %% "cats-helper" % "2.7.1-SNAPSHOT" // FIXME CE3 version required
   val scalatest     = "org.scalatest"       %% "scalatest"   % "3.1.1"
 
   object Cats {
