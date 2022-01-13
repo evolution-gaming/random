@@ -1,8 +1,7 @@
 package com.evolutiongaming.random
 
-import cats.effect.{Clock, Sync}
+import cats.effect.{Clock, Ref, Sync}
 import cats.syntax.all._
-import cats.effect.concurrent.Ref
 import com.evolutiongaming.catshelper.ClockHelper._
 
 trait SeedOf[F[_]] {
@@ -12,7 +11,7 @@ trait SeedOf[F[_]] {
 object SeedOf {
   private abstract sealed class FromClock
 
-  def fromClock[F[_]: Sync: Clock]: F[SeedOf[F]] = {
+  def fromClock[F[_]: Sync]: F[SeedOf[F]] = {
     for {
       ref <- Ref[F].of(8682522807148012L)
     } yield {
