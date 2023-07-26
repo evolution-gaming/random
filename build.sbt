@@ -16,8 +16,6 @@ scalaVersion := crossScalaVersions.value.head
 
 crossScalaVersions := Seq("2.13.11", "2.12.18", "3.3.0")
 
-publishTo := Some(Resolver.evolutionReleases)
-
 Compile / unmanagedSourceDirectories += {
   if (scalaVersion.value startsWith "2")
     sourceDirectory.value / "main" / "scala-2"
@@ -39,10 +37,21 @@ libraryDependencies ++= Seq(
   scalatest % Test
 )
 
+autoAPIMappings := true
+
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
 
-releaseCrossBuild := true
+sonatypeCredentialHost := "s01.oss.sonatype.org"
 
-// this is required to use cats syntax without warnings
-scalacOptions += "-language:implicitConversions"
-Compile / doc / scalacOptions -= "-Xfatal-warnings"
+sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
+
+Test / publishArtifact := false
+
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/evolution-gaming/random"),
+    "git@github.com:evolution-gaming/random.git"
+  )
+)
+
+enablePlugins(GitVersioning)
