@@ -16,7 +16,7 @@ object Random {
 
   type Seed = Long
 
-  def apply[F[_]](implicit F: Random[F]): Random[F] = F
+  def apply[F[_]](using F: Random[F]): Random[F] = F
 
   extension [F[_]](self: Random[F]){
     def mapK[G[_]](f: F ~> G): Random[G] = new Random[G] {
