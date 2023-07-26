@@ -14,7 +14,7 @@ organizationHomepage := Some(url("http://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.11", "2.12.18"/*, "0.22.0-RC1"*/)
+crossScalaVersions := Seq("2.13.11", "2.12.18", "3.3.0")
 
 publishTo := Some(Resolver.evolutionReleases)
 
@@ -33,9 +33,9 @@ Test / unmanagedSourceDirectories += {
 }
 
 libraryDependencies ++= Seq(
-  Cats.core.withDottyCompat(scalaVersion.value),
-  CatsEffect.effect.withDottyCompat(scalaVersion.value),
-  `cats-helper`.withDottyCompat(scalaVersion.value),
+  Cats.core,
+  CatsEffect.effect,
+  `cats-helper`,
   scalatest % Test
 )
 

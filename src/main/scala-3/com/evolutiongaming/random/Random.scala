@@ -1,10 +1,9 @@
 package com.evolutiongaming.random
 
 import cats.effect.Clock
-import cats._
-import cats.implicits._
+import cats.syntax.all.*
 import cats.{FlatMap, Id, ~>}
-import com.evolutiongaming.catshelper.ClockHelper._
+import com.evolutiongaming.catshelper.ClockHelper.*
 
 trait Random[F[_]] {
   def int: F[Int]
@@ -17,19 +16,17 @@ object Random {
 
   type Seed = Long
 
-  // TODO: the pair of `RandomOps` + `given ops: RandomOps` could be replaced
-  // by simple `extenstion` block in latest Dotty versions, we only use this
-  // because we use Dotty 0.22 as it is the latest version that ScalaTest is
-  // available for, and we wanted to try out ScalaTest in Dotty
-  trait RandomOps {
-    def [F[_], G[_]](self: Random[F]) mapK (f: F ~> G): Random[G] = new Random[G] {
+  def apply[F[_]](using F: Random[F]): Random[F] = F
+
+  extension [F[_]](self: Random[F]){
+    def mapK[G[_]](f: F ~> G): Random[G] = new Random[G] {
       def int = f(self.int)
       def long = f(self.long)
       def float = f(self.float)
       def double = f(self.double)
     }
   }
-  given ops: RandomOps
+
 
   type SeedT[A] = cats.data.StateT[Id, Seed, A]
 
@@ -54,31 +51,28 @@ object Random {
         def int = next(32)
 
         def long = {
-          for {
+          for
             a0 <- next(32)
             a1  = a0.toLong << 32
             a2 <- next(32)
-          } yield {
+          yield
             a1 + a2
-          }
         }
 
         def float = {
-          for {
+          for
             a <- next(24)
-          } yield {
+          yield
             a / floatUnit
-          }
         }
 
         def double = {
-          for {
+          for
             a0 <- next(26)
             a1  = a0.toLong << 27
             a2 <- next(27)
-          } yield {
+          yield
             (a1 + a2) * doubleUnit
-          }
         }
       }
     }
@@ -105,12 +99,12 @@ object Random {
 
     type Type[A] = (State, A)
 
-    def fromClock[F[_] : Clock : FlatMap](random: Random[SeedT] = SeedT.Random): F[State] = {
-      for {
+    def fromClock[F[_]: Clock: FlatMap](random: Random[SeedT] = SeedT.Random): F[State] = {
+      for
         nanos <- Clock[F].nanos
-      } yield {
-        apply(nanos, random)
-      }
+      yield
+        val seed = (nanos ^ 3447679086515839964L ^ 0x5DEECE66DL) & ((1L << 48) - 1)
+        apply(seed, random)
     }
   }
 }
