@@ -16,12 +16,12 @@ trait Random[F[_]] {
 
   def double: F[Double]
 }
-``` 
+```
 
 ## Setup
 
 ```scala
 addSbtPlugin("com.evolution" % "sbt-artifactory-plugin" % "0.0.2")
 
-libraryDependencies += "com.evolutiongaming" %% "random" % "0.1.1"
+libraryDependencies += "com.evolution" %% "random" % "1.0.4"
 ```
