@@ -6,7 +6,7 @@ object Dependencies {
   val scalatest     = "org.scalatest"       %% "scalatest"   % "3.2.16"
 
   object Cats {
-    private val version = "2.9.0"
+    private val version = "2.10.0"
     val core   = "org.typelevel" %% "cats-core" % version
   }
 
