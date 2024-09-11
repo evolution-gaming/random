@@ -4,13 +4,13 @@ name := "random"
 
 organization := "com.evolution"
 
-homepage := Some(new URL("http://github.com/evolution-gaming/random"))
+homepage := Some(url("https://github.com/evolution-gaming/random"))
 
 startYear := Some(2019)
 
 organizationName := "Evolution"
 
-organizationHomepage := Some(url("http://evolution.com"))
+organizationHomepage := Some(url("https://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
@@ -41,10 +41,6 @@ autoAPIMappings := true
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
 
-sonatypeCredentialHost := "s01.oss.sonatype.org"
-
-sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
-
 Test / publishArtifact := false
 
 scmInfo := Some(
@@ -63,4 +59,11 @@ developers := List(
   )
 )
 
-enablePlugins(GitVersioning)
+publishTo := Some(Resolver.evolutionReleases)
+
+releaseCrossBuild := true
+
+//addCommandAlias("check", "all versionPolicyCheck Compile/doc")
+addCommandAlias("check", "show version")
+addCommandAlias("build", "+all compile test")
+
