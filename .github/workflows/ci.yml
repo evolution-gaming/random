@@ -73,6 +73,9 @@ jobs:
           java-version: 17
           cache: "sbt"
 
+      - name: setup SBT
+        uses: sbt/setup-sbt@v1
+
       - name: Publish artifacts
         env:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USER }}
