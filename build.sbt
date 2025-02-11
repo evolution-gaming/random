@@ -16,6 +16,8 @@ scalaVersion := crossScalaVersions.value.head
 
 crossScalaVersions := Seq("2.13.11", "2.12.18", "3.3.0")
 
+versionPolicyIntention := Compatibility.BinaryCompatible
+
 Compile / unmanagedSourceDirectories += {
   if (scalaVersion.value startsWith "2")
     sourceDirectory.value / "main" / "scala-2"
@@ -61,9 +63,6 @@ developers := List(
 
 publishTo := Some(Resolver.evolutionReleases)
 
-releaseCrossBuild := true
-
-//addCommandAlias("check", "all versionPolicyCheck Compile/doc")
-addCommandAlias("check", "show version")
+addCommandAlias("check", "all versionPolicyCheck Compile/doc scalafmtCheckAll scalafmtSbtCheck; scalafixEnable; scalafixAll --check")
 addCommandAlias("build", "+all compile test")
 
