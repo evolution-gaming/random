@@ -64,5 +64,5 @@ developers := List(
 publishTo := Some(Resolver.evolutionReleases)
 
 addCommandAlias("check", "all versionPolicyCheck Compile/doc scalafmtCheckAll scalafmtSbtCheck; scalafixEnable; scalafixAll --check")
-addCommandAlias("build", "+all evicted compile test")
+addCommandAlias("build", "+all compile test")
 
