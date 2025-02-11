@@ -14,7 +14,9 @@ organizationHomepage := Some(url("https://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.11", "2.12.18", "3.3.0")
+crossScalaVersions := Seq("2.13.11", "2.12.18", "3.3.5")
+
+versionPolicyIntention := Compatibility.BinaryCompatible
 
 Compile / unmanagedSourceDirectories += {
   if (scalaVersion.value startsWith "2")
@@ -61,9 +63,12 @@ developers := List(
 
 publishTo := Some(Resolver.evolutionReleases)
 
-releaseCrossBuild := true
-
-//addCommandAlias("check", "all versionPolicyCheck Compile/doc")
-addCommandAlias("check", "show version")
+addCommandAlias(
+  "fmt",
+  "all scalafmtAll scalafmtSbt; scalafixEnable; scalafixAll"
+)
+addCommandAlias(
+  "check",
+  "all versionPolicyCheck Compile/doc scalafmtCheckAll scalafmtSbtCheck; scalafixEnable; scalafixAll --check"
+)
 addCommandAlias("build", "+all compile test")
-
