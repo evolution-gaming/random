@@ -27,7 +27,7 @@ class RandomSpec extends AnyFunSuite with Matchers {
   test("float") {
     random.float shouldEqual random.float
     val (random1, a0) = random.float
-    a0 shouldEqual 4.172325E-7f
+    a0 shouldEqual 4.172325e-7f
     val (_, a1) = random1.float
     a1 shouldEqual 0.4238568f
   }
@@ -35,7 +35,7 @@ class RandomSpec extends AnyFunSuite with Matchers {
   test("double") {
     random.double shouldEqual random.double
     val (random1, a0) = random.double
-    a0 shouldEqual 4.3844963359962463E-7
+    a0 shouldEqual 4.3844963359962463e-7
     val (_, a1) = random1.double
     a1 shouldEqual 0.2843758208196805
   }

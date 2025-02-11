@@ -18,7 +18,7 @@ object SeedOf {
       new FromClock with SeedOf[F] {
         def apply() = {
           for {
-            nanos      <- Clock[F].nanos
+            nanos <- Clock[F].nanos
             uniquifier <- ref.updateAndGet { _ * 1181783497276652981L }
           } yield {
             nanos ^ uniquifier
