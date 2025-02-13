@@ -1,22 +1,20 @@
 import Dependencies._
 
 name := "random"
-
 organization := "com.evolution"
-
 homepage := Some(url("https://github.com/evolution-gaming/random"))
-
 startYear := Some(2019)
-
 organizationName := "Evolution"
-
 organizationHomepage := Some(url("https://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
-
 crossScalaVersions := Seq("2.13.11", "2.12.18", "3.3.5")
-
 versionPolicyIntention := Compatibility.BinaryCompatible
+
+scalacOptions += {
+  if (scalaVersion.value startsWith "2.12") "-Ywarn-unused-import"
+  else "-Wunused:imports"
+}
 
 Compile / unmanagedSourceDirectories += {
   if (scalaVersion.value startsWith "2")
