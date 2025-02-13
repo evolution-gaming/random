@@ -23,5 +23,5 @@ trait Random[F[_]] {
 ```scala
 addSbtPlugin("com.evolution" % "sbt-artifactory-plugin" % "0.0.2")
 
-libraryDependencies += "com.evolution" %% "random" % "1.0.4"
+libraryDependencies += "com.evolution" %% "random" % "1.0.5"
 ```
