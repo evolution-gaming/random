@@ -42,15 +42,18 @@ object Random {
     }
   }
 
-  /** The pseudo random number generator (PRNG) for a single specific type `A` based on [[https://en.wikipedia.org/wiki/Linear_congruential_generator LCG]] algorithm. 
+  /** The pseudo random number generator (PRNG) for a single specific type `A`
+    * based on
+    * [[https://en.wikipedia.org/wiki/Linear_congruential_generator LCG]]
+    * algorithm.
     *
     * It takes some `state1` as an input and returns a new `state2` and a random
     * value of type `A`.
     *
     * Technically, it is just a function from `(Seed)` to `(Seed, A)`.
     *
-    * `StateT` is used instead of a plain function, it has the ability to
-    * chain several calls in for comprehensions, instead of doing something like
+    * `StateT` is used instead of a plain function, it has the ability to chain
+    * several calls in for comprehensions, instead of doing something like
     * following:
     * ```
     * val (state1, a) = f(seed)
