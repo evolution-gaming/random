@@ -42,7 +42,7 @@ object Random {
     }
   }
 
-  /** The random number generator for a single specific type `A`.
+  /** The pseudo random number generator (PRNG) for a single specific type `A` based on [[https://en.wikipedia.org/wiki/Linear_congruential_generator LCG]] algorithm. 
     *
     * It takes some `state1` as an input and returns a new `state2` and a random
     * value of type `A`.
