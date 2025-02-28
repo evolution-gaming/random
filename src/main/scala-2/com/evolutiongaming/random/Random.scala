@@ -150,7 +150,7 @@ object Random {
 
     type Type[A] = (State, A)
 
-    /** Create an instance of [[Random.State]] based on [[Clock]].
+    /** Create an instance of [[Random.State]] based on [[cats.effect.Clock]].
       *
       * The state is initialized with a constant seed known to be good and mixed
       * together with a current time to add an additional randomness.
