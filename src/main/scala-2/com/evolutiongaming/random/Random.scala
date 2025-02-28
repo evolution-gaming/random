@@ -122,7 +122,9 @@ object Random {
     *
     * @param seed
     *   The internal state of the random number generator that will be used to
-    *   generate the next random number.
+    *   generate the next random number. The initial `seed` is quite important
+    *   as having `0` as seed reduces this LCG PRNG to lesser Lehmer RNG.
+    *   Consider using [[State#fromClock]] for a good initial seed.
     * @param random
     *   The stateless part of the random number generator, i.e. the set of
     *   functions from `state1` to `(state2, A)`, where `A` is the type of
