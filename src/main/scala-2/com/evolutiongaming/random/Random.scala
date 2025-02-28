@@ -65,10 +65,7 @@ object Random {
 
   object SeedT {
 
-    /** Set of random number generators for common numeric types.
-      *
-      * The instance provides `SeedT`
-      */
+    /** Set of random number generators for common numeric types */
     val Random: Random[SeedT] = {
 
       val doubleUnit = 1.0 / (1L << 53)
