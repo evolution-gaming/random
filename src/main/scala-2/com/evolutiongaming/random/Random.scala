@@ -49,7 +49,7 @@ object Random {
     *
     * Technically, it is just a function from `(Seed)` to `(Seed, A)`.
     *
-    * `StateT` is used instead of a plain function, got have the ability to
+    * `StateT` is used instead of a plain function, it has the ability to
     * chain several calls in for comprehensions, instead of doing something like
     * following:
     * ```
