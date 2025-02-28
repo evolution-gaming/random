@@ -59,7 +59,7 @@ object Random {
     * ```
     *
     * The practice shown that this introduces a lot of confusion, so in future
-    * library versions `StateT` will stop to be exposed in public API.
+    * library versions `StateT` will not be exposed in public API.
     */
   type SeedT[A] = StateT[Id, Seed, A]
 
