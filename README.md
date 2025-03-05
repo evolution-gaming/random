@@ -50,7 +50,7 @@ def clockSeedExample: IO[Unit] =
   } yield ()
 ```
 
-The typical Cats Effect user might prefer storing this instances in `IOLocal`
+The typical Cats Effect user might prefer storing these instances in `IOLocal`
 for efficiency and code readability (i.e. to not pass a state manually around):
 
 ``` scala
