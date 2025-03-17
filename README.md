@@ -5,6 +5,18 @@
 [![Artifactory](https://img.shields.io/github/v/release/evolution-gaming/random)](https://evolution.jfrog.io/ui/packages/gav:%2F%2Fcom.evolution:random_2.13)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellowgreen.svg)](https://opensource.org/licenses/MIT)
 
+Pure pseudo-random number generator, which returns a new state on each call.
+The returned state could be used to generate a next random value, without
+relying for it to be saved in a mutable variable inside of the RNG library.
+
+It could be useful for writing the code, when the direct usage of an effect
+system such as `cats.effect.IO` is either not possible or not desired. Also,
+the versions `0.1.1` and below are compatible with Cats Effect 2.
+
+If the application already uses Cats Effect 3 and pure random generator is not
+required then https://typelevel.org/cats-effect/docs/std/random might be a
+preferred choice for sake of using a more standard solution.
+
 ```scala
 trait Random[F[_]] {
 
