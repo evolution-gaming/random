@@ -5,7 +5,7 @@
 [![Artifactory](https://img.shields.io/github/v/release/evolution-gaming/random)](https://evolution.jfrog.io/ui/packages/gav:%2F%2Fcom.evolution:random_2.13)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellowgreen.svg)](https://opensource.org/licenses/MIT)
 
-Pure pseudo-random number generator, which returns a new state on each call.
+Pure deterministic pseudo-random number generator, which returns a new state on each call.
 The returned state could be used to generate a next random value, without
 relying for it to be saved in a mutable variable inside of the RNG library.
 
