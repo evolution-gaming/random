@@ -8,7 +8,7 @@ organizationName := "Evolution"
 organizationHomepage := Some(url("https://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
-crossScalaVersions := Seq("2.13.11", "2.12.18", "3.3.5")
+crossScalaVersions := Seq("2.13.11", "2.12.18", "3.3.6")
 versionPolicyIntention := Compatibility.BinaryCompatible
 
 scalacOptions += {
