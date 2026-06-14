@@ -14,4 +14,4 @@ addSbtPlugin("com.github.sbt" % "sbt-dynver" % "5.1.1")
 
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.5")
 
-addSbtPlugin("com.thoughtworks.sbt-api-mappings" % "sbt-api-mappings" % "3.0.2")
+addSbtPlugin("com.thoughtworks.sbt-api-mappings" % "sbt-api-mappings" % "3.0.3")
