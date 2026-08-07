@@ -1,6 +1,5 @@
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.0.8")
 
-
 addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.14.3")
 
 addSbtPlugin("ch.epfl.scala" % "sbt-version-policy" % "3.2.1")
