@@ -9,7 +9,7 @@ trait SeedOf[F[_]] {
 }
 
 object SeedOf {
-  private abstract sealed class FromClock
+  private sealed abstract class FromClock
 
   def fromClock[F[_]: Sync]: F[SeedOf[F]] = {
     for {

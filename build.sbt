@@ -31,7 +31,7 @@ libraryDependencies ++= Seq(
   Cats.core,
   CatsEffect.effect,
   `cats-helper`,
-  scalatest % Test
+  scalatest % Test,
 )
 
 autoAPIMappings := true
@@ -43,8 +43,8 @@ Test / publishArtifact := false
 scmInfo := Some(
   ScmInfo(
     url("https://github.com/evolution-gaming/random"),
-    "git@github.com:evolution-gaming/random.git"
-  )
+    "git@github.com:evolution-gaming/random.git",
+  ),
 )
 
 developers := List(
@@ -52,8 +52,8 @@ developers := List(
     "t3hnar",
     "Yaroslav Klymko",
     "yklymko@evolution.com",
-    url("https://github.com/t3hnar")
-  )
+    url("https://github.com/t3hnar"),
+  ),
 )
 
 publishTo := Some(Resolver.evolutionReleases)

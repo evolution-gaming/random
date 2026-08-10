@@ -16,7 +16,10 @@ object Random {
 
   type Seed = Long
 
-  def apply[F[_]](using F: Random[F]): Random[F] = F
+  def apply[F[_]](
+    using
+    F: Random[F],
+  ): Random[F] = F
 
   extension [F[_]](self: Random[F]) {
     def mapK[G[_]](f: F ~> G): Random[G] = new Random[G] {
@@ -77,7 +80,7 @@ object Random {
   }
 
   final case class State(seed: Seed, random: Random[SeedT] = SeedT.Random)
-      extends Random[State.Type] {
+  extends Random[State.Type] {
 
     private def apply[A](stateT: SeedT[A]) = {
       val (seed1, a) = stateT.run(seed)
@@ -95,12 +98,11 @@ object Random {
     type Type[A] = (State, A)
 
     def fromClock[F[_]: Clock: FlatMap](
-        random: Random[SeedT] = SeedT.Random
+      random: Random[SeedT] = SeedT.Random,
     ): F[State] = {
       for nanos <- Clock[F].nanos
       yield
-        val seed =
-          (nanos ^ 3447679086515839964L ^ 0x5deece66dL) & ((1L << 48) - 1)
+        val seed = (nanos ^ 3447679086515839964L ^ 0x5deece66dL) & ((1L << 48) - 1)
         apply(seed, random)
     }
   }
