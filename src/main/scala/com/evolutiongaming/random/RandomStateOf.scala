@@ -9,7 +9,7 @@ trait RandomStateOf[F[_]] {
 
 object RandomStateOf {
 
-  private abstract sealed class Main
+  private sealed abstract class Main
 
   def of[F[_]: Sync]: F[RandomStateOf[F]] = {
     SeedOf

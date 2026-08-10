@@ -19,14 +19,17 @@ trait Random[F[_]] {
 
 object Random {
 
-  /** The type used as a seed for the random number generator.
-    *
-    * In this library it also used as an internal state of the random number
-    * generator.
-    */
+  /**
+   * The type used as a seed for the random number generator.
+   *
+   * In this library it also used as an internal state of the random number generator.
+   */
   type Seed = Long
 
-  def apply[F[_]](implicit F: Random[F]): Random[F] = F
+  def apply[F[_]](
+    implicit
+    F: Random[F],
+  ): Random[F] = F
 
   implicit class RandomOps[F[_]](val self: Random[F]) extends AnyVal {
 
@@ -42,33 +45,32 @@ object Random {
     }
   }
 
-  /** The pseudo random number generator (PRNG) for a single specific type `A`
-    * based on
-    * [[https://en.wikipedia.org/wiki/Linear_congruential_generator LCG]]
-    * algorithm.
-    *
-    * It takes some `state1` as an input and returns a new `state2` and a random
-    * value of type `A`.
-    *
-    * Technically, it is just a function from `(Seed)` to `(Seed, A)`.
-    *
-    * `StateT` is used instead of a plain function, it has the ability to chain
-    * several calls in for comprehensions, instead of doing something like
-    * following:
-    * ```
-    * val (state1, a) = f(seed)
-    * val (state2, b) = g(state1)
-    * val (state3, c) = h(state2)
-    * ```
-    *
-    * The practice shown that this introduces a lot of confusion, so in future
-    * library versions `StateT` will not be exposed in public API.
-    */
+  /**
+   * The pseudo random number generator (PRNG) for a single specific type `A` based on
+   * [[https://en.wikipedia.org/wiki/Linear_congruential_generator LCG]] algorithm.
+   *
+   * It takes some `state1` as an input and returns a new `state2` and a random value of type `A`.
+   *
+   * Technically, it is just a function from `(Seed)` to `(Seed, A)`.
+   *
+   * `StateT` is used instead of a plain function, it has the ability to chain several calls in for
+   * comprehensions, instead of doing something like following:
+   * ```
+   * val (state1, a) = f(seed)
+   * val (state2, b) = g(state1)
+   * val (state3, c) = h(state2)
+   * ```
+   *
+   * The practice shown that this introduces a lot of confusion, so in future library versions
+   * `StateT` will not be exposed in public API.
+   */
   type SeedT[A] = StateT[Id, Seed, A]
 
   object SeedT {
 
-    /** Set of random number generators for common numeric types */
+    /**
+     * Set of random number generators for common numeric types
+     */
     val Random: Random[SeedT] = {
 
       val doubleUnit = 1.0 / (1L << 53)
@@ -118,21 +120,20 @@ object Random {
       StateT[Id, Seed, A] { seed => f(seed) }
   }
 
-  /** Snapshot of a state of a stateful random number generator.
-    *
-    * @param seed
-    *   The internal state of the random number generator that will be used to
-    *   generate the next random number. The initial `seed` is quite important
-    *   as having `0` as seed reduces this LCG PRNG to lesser Lehmer RNG.
-    *   Consider using [[State#fromClock]] for a good initial seed.
-    * @param random
-    *   The stateless part of the random number generator, i.e. the set of
-    *   functions from `state1` to `(state2, A)`, where `A` is the type of
-    *   outputs of a random number generator such as `Int`, `Long`, `Float`, or
-    *   `Double`.
-    */
+  /**
+   * Snapshot of a state of a stateful random number generator.
+   *
+   * @param seed
+   *   The internal state of the random number generator that will be used to generate the next
+   *   random number. The initial `seed` is quite important as having `0` as seed reduces this LCG
+   *   PRNG to lesser Lehmer RNG. Consider using [[State#fromClock]] for a good initial seed.
+   * @param random
+   *   The stateless part of the random number generator, i.e. the set of functions from `state1` to
+   *   `(state2, A)`, where `A` is the type of outputs of a random number generator such as `Int`,
+   *   `Long`, `Float`, or `Double`.
+   */
   final case class State(seed: Seed, random: Random[SeedT] = SeedT.Random)
-      extends Random[State.Type] {
+  extends Random[State.Type] {
 
     private def apply[A](stateT: SeedT[A]) = {
       val (seed1, a) = stateT.run(seed)
@@ -152,19 +153,19 @@ object Random {
 
     type Type[A] = (State, A)
 
-    /** Create an instance of [[Random.State]] based on [[cats.effect.Clock]].
-      *
-      * The state is initialized with a constant seed known to be good and mixed
-      * together with a current time to add an additional randomness.
-      */
+    /**
+     * Create an instance of [[Random.State]] based on [[cats.effect.Clock]].
+     *
+     * The state is initialized with a constant seed known to be good and mixed together with a
+     * current time to add an additional randomness.
+     */
     def fromClock[F[_]: Clock: FlatMap](
-        random: Random[SeedT] = SeedT.Random
+      random: Random[SeedT] = SeedT.Random,
     ): F[State] =
       for {
         nanos <- Clock[F].nanos
       } yield {
-        val seed =
-          (nanos ^ 3447679086515839964L ^ 0x5deece66dL) & ((1L << 48) - 1)
+        val seed = (nanos ^ 3447679086515839964L ^ 0x5deece66dL) & ((1L << 48) - 1)
         State(seed, random)
       }
 
