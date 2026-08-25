@@ -2,7 +2,7 @@ import sbt.*
 
 object Dependencies {
 
-  val `cats-helper` = "com.evolutiongaming" %% "cats-helper" % "3.12.2"
+  val `cats-helper` = "com.evolutiongaming" %% "cats-helper" % "3.13.1"
   val scalatest = "org.scalatest" %% "scalatest" % "3.2.20"
 
   object Cats {
