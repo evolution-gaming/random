@@ -1,6 +1,6 @@
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.4.4")
 
-addSbtPlugin("ch.epfl.scala" % "sbt-version-policy" % "3.3.0")
+addSbtPlugin("ch.epfl.scala" % "sbt-version-policy" % "3.4.0")
 
 addSbtPlugin("com.evolution" % "sbt-scalac-opts-plugin" % "0.2.1")
 
